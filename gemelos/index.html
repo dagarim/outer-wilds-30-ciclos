@@ -33,20 +33,26 @@ main:after{content:"";position:absolute;inset:-30%;background:radial-gradient(ci
 .button.ready{border-color:#e0d3c1;background:#28231e;color:#fff;box-shadow:0 0 16px #d7b27a22;animation:buttonReady 1.4s ease-in-out infinite}
 @keyframes buttonReady{50%{box-shadow:0 0 24px #d7b27a55}}
 .dots{font:9px monospace;letter-spacing:4px;color:#756e65}
-.twins{position:absolute;right:2%;top:5%;width:48%;height:88%;display:flex;align-items:center;justify-content:center;gap:4%;transform:rotate(-2deg)}
-.moon{position:relative;width:min(18vw,190px);height:min(18vw,190px);border-radius:50%;overflow:hidden;box-shadow:inset -25px -20px 38px #080807aa,inset 12px 10px 24px #fff2,0 0 35px #d6a25a33}
-.brasa{background:radial-gradient(circle at 32% 28%,#e2a55f 0,#b86d35 30%,#713f27 62%,#29201b 100%);animation:floatA 7s ease-in-out infinite}
-.ceniza{background:radial-gradient(circle at 30% 25%,#b6aaa0 0,#82786e 30%,#4c4945 62%,#202220 100%);animation:floatB 7s ease-in-out infinite}
-.moon:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 25% 20%,#fff3 0 7%,transparent 9%),radial-gradient(circle at 70% 65%,#05050555 0 11%,transparent 12%),radial-gradient(circle at 48% 40%,#17141144 0 6%,transparent 7%),radial-gradient(circle at 62% 25%,#fff1 0 4%,transparent 5%);opacity:.8}
-.moon:after{content:"";position:absolute;inset:0;background:linear-gradient(125deg,transparent 35%,#03040499 100%);mix-blend-mode:multiply}
-@keyframes floatA{50%{transform:translateY(-7px) rotate(2deg)}}@keyframes floatB{50%{transform:translateY(7px) rotate(-2deg)}}
-.sand{position:absolute;left:50%;top:50%;width:55%;height:55%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid #d5a96e22;box-shadow:0 0 40px #d4a15c18;animation:sandPulse 5s ease-in-out infinite}
-@keyframes sandPulse{50%{transform:translate(-50%,-50%) scale(1.08);opacity:.7}}
-@media(prefers-reduced-motion:reduce){main:before,main:after,.moon,.sand{animation:none}}
+.twins{position:absolute;inset:5% 0 2%;display:flex;gap:0;overflow:hidden;border:1px solid #4a4138;transform:rotate(-1deg)}
+.split{position:relative;width:50%;height:100%;overflow:hidden}
+.split.ceniza{background:linear-gradient(110deg,#b9ad9e 0,#8a7d70 35%,#554e47 70%,#252521 100%);border-right:2px solid #c7a56d55}
+.split.brasa{background:linear-gradient(115deg,#4a1d13 0,#8b321c 32%,#d05a24 62%,#e18a38 100%)}
+.split.ceniza:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 25% 18%,#f0e2cd 0 1px,transparent 2px),radial-gradient(circle at 62% 35%,#d7c9b7 0 1.5px,transparent 3px),radial-gradient(circle at 42% 70%,#efe1ca 0 1px,transparent 2px),radial-gradient(circle at 78% 82%,#c9bbaa 0 1px,transparent 2px);background-size:120px 150px,180px 190px,145px 175px,210px 220px;opacity:.8;animation:sandFly 5s linear infinite}
+.split.ceniza:after{content:"";position:absolute;left:42%;bottom:-5%;width:18%;height:110%;background:linear-gradient(90deg,transparent,#ead7bb88,transparent);filter:blur(10px);opacity:.55;transform:rotate(16deg);animation:sandFall 4.5s ease-in-out infinite}
+.split.brasa:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 75%,#ffb04c 0 2px,transparent 5px),radial-gradient(circle at 48% 34%,#ffcc70 0 1.5px,transparent 4px),radial-gradient(circle at 75% 64%,#ff6a2e 0 2px,transparent 5px),radial-gradient(circle at 60% 82%,#ffad3d 0 1px,transparent 4px);background-size:130px 120px,170px 150px,150px 170px,190px 130px;animation:embers 3.8s ease-in-out infinite}
+.split.brasa:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,#ff7a2738 0 18%,transparent 55%),linear-gradient(90deg,#ff6a1d12,#0000,#ffb34718);mix-blend-mode:screen;animation:heat 4s ease-in-out infinite}
+.sand-field{position:absolute;left:-15%;bottom:-8%;width:130%;height:58%;background:repeating-linear-gradient(165deg,transparent 0 18px,#dfccb366 19px 21px,transparent 22px 37px);filter:blur(1px);opacity:.5;transform:rotate(-5deg);animation:sandSheet 6s ease-in-out infinite}
+.ember-field{position:absolute;left:5%;right:5%;bottom:0;height:72%;background:radial-gradient(ellipse at 50% 100%,#ff7a2c66 0 18%,transparent 60%);filter:blur(7px)}
+@keyframes sandFly{0%{transform:translate(-8%,4%) rotate(-2deg)}50%{transform:translate(8%,-5%) rotate(2deg)}100%{transform:translate(-8%,4%) rotate(-2deg)}}
+@keyframes sandFall{0%,100%{transform:translateY(-4%) rotate(16deg)}50%{transform:translateY(5%) rotate(13deg)}}
+@keyframes sandSheet{0%,100%{transform:translateX(-3%) rotate(-5deg)}50%{transform:translateX(5%) rotate(-3deg)}}
+@keyframes embers{0%,100%{transform:translateY(3px);opacity:.72}50%{transform:translateY(-8px);opacity:1}}
+@keyframes heat{50%{opacity:.8;transform:scale(1.04)}}
+@media(prefers-reduced-motion:reduce){main:before,main:after,.split:before,.split:after,.sand-field{animation:none}}
 @media(orientation:portrait){main{display:none}.rotate{display:flex}}
 @media(orientation:landscape) and (max-height:900px){
 main{height:100dvh;min-height:100dvh}.panel{height:calc(100dvh - 12px);min-height:0;padding:12px 20px}.panel:before{display:none}
-.hero{height:calc(100dvh - 58px);overflow:hidden}.data{top:7%;height:82%;width:53%;padding:12px 18px 36px}.title{font-size:18px;letter-spacing:3px}.message blockquote{font-size:13px;line-height:1.35;overflow-wrap:anywhere}.timer{margin-top:10px;padding:6px 8px}.timer strong{font-size:16px}.nav{bottom:3px;left:14px;right:14px}.button{padding:5px 7px;font-size:6.5px}.moon{width:145px;height:145px}
+.hero{height:calc(100dvh - 58px);overflow:hidden}.data{top:7%;height:82%;width:53%;padding:12px 18px 36px}.title{font-size:18px;letter-spacing:3px}.message blockquote{font-size:13px;line-height:1.35;overflow-wrap:anywhere}.timer{margin-top:10px;padding:6px 8px}.timer strong{font-size:16px}.nav{bottom:3px;left:14px;right:14px}.button{padding:5px 7px;font-size:6.5px}.twins{inset:5% 0 2%}
 }
 </style>
 </head>
@@ -58,7 +64,7 @@ main{height:100dvh;min-height:100dvh}.panel{height:calc(100dvh - 12px);min-heigh
 
 <div class="screen active" id="s1">
 <div class="hero">
-<div class="twins"><div class="moon brasa"></div><div class="moon ceniza"></div><div class="sand"></div></div>
+<div class="twins"><div class="split ceniza"><div class="sand-field"></div></div><div class="split brasa"><div class="ember-field"></div></div></div>
 <div class="data">
 <div class="signal">TRANSMISIÓN NOMAI DETECTADA · <b>GEMELOS</b></div>
 <h1 class="title">GEMELO BRASA</h1>
@@ -69,7 +75,7 @@ main{height:100dvh;min-height:100dvh}.panel{height:calc(100dvh - 12px);min-heigh
 
 <div class="screen" id="s2">
 <div class="hero">
-<div class="twins"><div class="moon brasa"></div><div class="moon ceniza"></div><div class="sand"></div></div>
+<div class="twins"><div class="split ceniza"><div class="sand-field"></div></div><div class="split brasa"><div class="ember-field"></div></div></div>
 <div class="data">
 <div class="signal">TRANSMISIÓN NOMAI · <b>GEMELO CENIZA</b></div>
 <h1 class="title">GEMELO CENIZA</h1>
@@ -81,7 +87,7 @@ main{height:100dvh;min-height:100dvh}.panel{height:calc(100dvh - 12px);min-heigh
 
 <div class="screen" id="s3">
 <div class="hero">
-<div class="twins"><div class="moon brasa"></div><div class="moon ceniza"></div><div class="sand"></div></div>
+<div class="twins"><div class="split ceniza"><div class="sand-field"></div></div><div class="split brasa"><div class="ember-field"></div></div></div>
 <div class="data">
 <div class="signal">TRANSMISIÓN NOMAI · <b>GEMELOS</b></div>
 <h1 class="title">SEÑAL DE MISIÓN</h1>
