@@ -23,7 +23,7 @@ function typeMsg(n){
       el.appendChild(p);
     }
     const p=el.children[li],text=arr[li][0];
-    const prefix=(n===1&&li===0)?'<b style="color:#fff">ESKER:</b> ':'';
+    const prefix=((n===1||n===2)&&li===0)?'<b style="color:#fff">ESKER:</b> ':'';
     if(ci<text.length){p.innerHTML=prefix+text.slice(0,++ci)}
     else{li++;ci=0}
   },28);
