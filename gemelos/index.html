@@ -19,7 +19,7 @@ main:after{content:"";position:absolute;inset:-30%;background:radial-gradient(ci
 .top{display:flex;justify-content:space-between;border-bottom:1px solid #35342f;padding:5px 5px 13px}
 .meta{font:10px monospace;letter-spacing:2.5px;color:#9f988e}.identity{color:#c9c0b5}
 .hero{height:calc(100vh - 110px);position:relative}
-.data{position:absolute;left:3%;top:7%;width:53%;height:82%;padding:12px 18px 36px;border-left:1px solid #4c4740;background:linear-gradient(90deg,#080a0900,#080a0966 18%,#080a09b5)}
+.data{position:absolute;left:3%;top:7%;width:53%;height:82%;padding:12px 18px 36px;border-left:1px solid #f0dfc0;background:linear-gradient(90deg,#17120dcc,#17120daa 18%,#17120d88)}
 .signal{font:10px monospace;letter-spacing:3px;color:#a8a197;margin-bottom:7px;height:14px}
 .signal b{color:#d8b276}.title{font-size:22px;letter-spacing:4px;font-weight:normal;margin:0 0 5px;color:#edf0f1}
 .subtitle{font:9px monospace;letter-spacing:1.5px;color:#89837b;margin-bottom:9px}
@@ -111,7 +111,7 @@ el.innerHTML='';let li=0,ci=0;
 typing=setInterval(()=>{
 if(li>=lines[n].length){clearInterval(typing);screenReady(n);return}
 if(!el.children[li]){const p=document.createElement('p');el.appendChild(p)}
-const p=el.children[li],t=lines[n][li],prefix='<b style="color:#e0d4c5">GABRO:</b> ';
+const p=el.children[li],t=lines[n][li],prefix='<b style="color:#fff2df;text-shadow:0 1px 4px #000">GABRO:</b> ';
 if(ci<t.length){p.innerHTML=prefix+t.slice(0,++ci)}else{li++;ci=0}
 },42);
 }
