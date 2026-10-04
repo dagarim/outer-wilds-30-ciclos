@@ -3,99 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gemelos · El Tiempo · 30 Ciclos</title>
+<title>Gemelos · 30 ciclos de exploración</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#070808;color:#e9ecee;font-family:"Trebuchet MS",Arial,sans-serif;overflow:hidden}
-.rotate{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 42%,#40342b 0,#171817 35%,#090a09 70%,#040505 100%);color:#d5cec5;font:14px monospace;letter-spacing:3px}
-.rotate>div{font-weight:bold;text-shadow:0 0 18px #d9a86a55}.rotate small{display:block;margin-top:18px;font-size:9px;color:#968d84}
-main{min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;background:radial-gradient(circle at 50% 48%,#27221c 0,#151513 28%,#090a09 65%,#040505 100%)}
-main:before{content:"";position:absolute;width:150vmax;height:150vmax;border-radius:50%;background:repeating-radial-gradient(ellipse at 50% 50%,transparent 0 7%,#d5a46d0b 7.2% 7.35%,transparent 7.6% 14%);animation:none}
-main:after{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 18% 28%,#e1c49a55 0 1px,transparent 2px),radial-gradient(circle at 72% 64%,#b8a58b55 0 1px,transparent 2px),radial-gradient(circle at 55% 16%,#efe0c0 0 1px,transparent 2px);background-size:175px 175px,235px 235px,315px 315px;opacity:.35;animation:none}
-@keyframes drift{to{transform:rotate(360deg)}}@keyframes stars{to{transform:translate(40px,24px)}}
-.panel{position:relative;z-index:2;width:min(1100px,94%);height:min(760px,94vh);padding:30px;border:1px solid #756b60;background:#080a09ee;box-shadow:0 0 0 1px #282722,0 0 80px #000,0 0 35px #c99d6333}
-.panel:before{content:"";position:absolute;inset:12px;border:1px solid #3f3b35;pointer-events:none}
-.screen{display:none;height:100%}.screen.active{display:block}
-.top{display:flex;justify-content:space-between;border-bottom:1px solid #35342f;padding:5px 5px 13px}
-.meta{font:10px monospace;letter-spacing:2.5px;color:#9f988e}.identity{color:#c9c0b5}
-.hero{height:calc(100vh - 110px);position:relative}
-.data{position:absolute;left:3%;top:7%;width:53%;height:82%;padding:12px 18px 36px;border-left:1px solid #f0dfc0;background:linear-gradient(90deg,#17120dcc,#17120daa 18%,#17120d88)}
-.signal{font:10px monospace;letter-spacing:3px;color:#a8a197;margin-bottom:7px;height:14px}
-.signal b{color:#d8b276}.title{font-size:22px;letter-spacing:4px;font-weight:normal;margin:0 0 5px;color:#edf0f1}
-.subtitle{font:9px monospace;letter-spacing:1.5px;color:#89837b;margin-bottom:9px}
-.message{min-height:100px;display:flex;align-items:flex-start}
-.message blockquote{margin:0;padding-left:16px;border-left:2px solid #b59a78;font:16px/1.5 "Space Mono",monospace;color:#ddd7cf}
-.quote-text p{margin:0 0 9px}.keyword{color:#e3bc82;font-weight:bold;text-shadow:0 0 10px #d5a15b33}
-.timer{margin-top:18px;border:1px solid #50483e;padding:10px 12px;background:#0d0d0caa;font:10px monospace;letter-spacing:2px;color:#aaa197}
-.timer strong{display:block;font-size:19px;letter-spacing:3px;color:#e2d6c7;margin-top:5px}
-.nav{display:flex;justify-content:space-between;align-items:center;position:absolute;left:20px;right:35px;bottom:8px}
-.button{border:1px solid #6b6258;background:#0d1110;color:#cbc3ba;padding:10px 15px;font:10px monospace;letter-spacing:2px;cursor:pointer}
-.button.ready{border-color:#e0d3c1;background:#28231e;color:#fff;box-shadow:0 0 16px #d7b27a22;animation:buttonReady 1.4s ease-in-out infinite}
-@keyframes buttonReady{50%{box-shadow:0 0 24px #d7b27a55}}
-.dots{font:9px monospace;letter-spacing:4px;color:#756e65}
-.twins{position:absolute;inset:5% 0 2%;display:flex;gap:0;overflow:hidden;border:1px solid #4a4138;transform:rotate(-1deg)}
+html,body{margin:0;width:100%;height:100%;background:#090a09;color:#eee;font-family:monospace}
+body{overflow:hidden}
+main{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.rotate{display:none}
+.panel{width:min(1100px,94%);height:min(760px,94vh);padding:30px;border:1px solid #756b60;background:#080a09;box-sizing:border-box}
+.hero{height:100%;position:relative}
+.screen{display:none;height:100%}
+.screen.active{display:block}
+.data{position:absolute;left:3%;top:7%;width:53%;height:82%;box-sizing:border-box;padding:12px 18px;border-left:1px solid #f0dfc0;background:#11100ddd;z-index:2}
+.signal{font-size:11px;letter-spacing:2px;color:#c9b99f;margin-bottom:18px}
+.title{font-size:24px;letter-spacing:5px;margin:0 0 7px}
+.subtitle{font-size:10px;letter-spacing:2px;color:#a99f94;margin-bottom:25px}
+.message blockquote{margin:0;padding-left:16px;border-left:2px solid #b59a78;font:16px/1.5 monospace;color:#fff}
+.message p{margin:0 0 10px}
+.twins{position:absolute;inset:5% 0 2%;display:flex;overflow:hidden;border:1px solid #4a4138}
 .split{position:relative;width:50%;height:100%;overflow:hidden}
-.split.ceniza{background:linear-gradient(110deg,#b9ad9e 0,#8a7d70 35%,#554e47 70%,#252521 100%);border-right:2px solid #c7a56d55}
-.split.brasa{background:linear-gradient(115deg,#4a1d13 0,#8b321c 32%,#d05a24 62%,#e18a38 100%)}
-.split.ceniza:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 25% 18%,#f0e2cd 0 1px,transparent 2px),radial-gradient(circle at 62% 35%,#d7c9b7 0 1.5px,transparent 3px),radial-gradient(circle at 42% 70%,#efe1ca 0 1px,transparent 2px),radial-gradient(circle at 78% 82%,#c9bbaa 0 1px,transparent 2px);background-size:120px 150px,180px 190px,145px 175px,210px 220px;opacity:.8;animation:sandFly 5s linear infinite}
-.split.ceniza:after{content:"";position:absolute;left:42%;bottom:-5%;width:18%;height:110%;background:linear-gradient(90deg,transparent,#ead7bb88,transparent);filter:blur(10px);opacity:.55;transform:rotate(16deg);animation:sandFall 4.5s ease-in-out infinite}
-.split.brasa:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 75%,#ffb04c 0 2px,transparent 5px),radial-gradient(circle at 48% 34%,#ffcc70 0 1.5px,transparent 4px),radial-gradient(circle at 75% 64%,#ff6a2e 0 2px,transparent 5px),radial-gradient(circle at 60% 82%,#ffad3d 0 1px,transparent 4px);background-size:130px 120px,170px 150px,150px 170px,190px 130px;animation:embers 3.8s ease-in-out infinite}
-.split.brasa:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,#ff7a2738 0 18%,transparent 55%),linear-gradient(90deg,#ff6a1d12,#0000,#ffb34718);mix-blend-mode:screen;animation:heat 4s ease-in-out infinite}
-.sand-field{position:absolute;left:-15%;bottom:-8%;width:130%;height:58%;background:repeating-linear-gradient(165deg,transparent 0 18px,#dfccb366 19px 21px,transparent 22px 37px);filter:blur(1px);opacity:.5;transform:rotate(-5deg);animation:sandSheet 6s ease-in-out infinite}
-.ember-field{position:absolute;left:5%;right:5%;bottom:0;height:72%;background:radial-gradient(ellipse at 50% 100%,#ff7a2c66 0 18%,transparent 60%);filter:blur(7px)}
-@keyframes sandFly{0%{transform:translate(-8%,4%) rotate(-2deg)}50%{transform:translate(8%,-5%) rotate(2deg)}100%{transform:translate(-8%,4%) rotate(-2deg)}}
-@keyframes sandFall{0%,100%{transform:translateY(-4%) rotate(16deg)}50%{transform:translateY(5%) rotate(13deg)}}
-@keyframes sandSheet{0%,100%{transform:translateX(-3%) rotate(-5deg)}50%{transform:translateX(5%) rotate(-3deg)}}
-@keyframes embers{0%,100%{transform:translateY(3px);opacity:.72}50%{transform:translateY(-8px);opacity:1}}
-@keyframes heat{50%{opacity:.8;transform:scale(1.04)}}
-@media(prefers-reduced-motion:reduce){main:before,main:after,.split:before,.split:after,.sand-field{animation:none}}
-@media(orientation:portrait){main{display:none}.rotate{display:flex}}
+.split.ceniza{background:linear-gradient(110deg,#b9ad9e,#8a7d70 35%,#554e47 70%,#252521)}
+.split.brasa{background:linear-gradient(115deg,#4a1d13,#8b321c 32%,#d05a24 62%,#e18a38)}
+.sand-field,.ember-field{position:absolute;inset:0}
+.sand-field{background:radial-gradient(circle at 20% 25%,#eee2cf 0 1px,transparent 2px),radial-gradient(circle at 65% 55%,#d9c7ad 0 1px,transparent 2px),radial-gradient(circle at 80% 18%,#f0e1ca 0 1px,transparent 2px);opacity:.55}
+.ember-field{background:radial-gradient(circle at 20% 25%,#ffd18a 0 1px,transparent 2px),radial-gradient(circle at 70% 60%,#ffb35d 0 1px,transparent 2px),radial-gradient(circle at 84% 25%,#ffe0a6 0 1px,transparent 2px);opacity:.55}
+.timer{margin-top:22px;padding:10px;border:1px solid #806e58;color:#e5d3bb}
+.timer strong{display:block;font-size:22px;margin-top:5px}
+.nav{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;gap:10px;z-index:4}
+.button{padding:8px 12px;border:1px solid #756b60;background:#171613;color:#cfc5b9;font:8px monospace;letter-spacing:1px;cursor:pointer}
+.button.ready{border-color:#e0d3c1;color:#fff}
+@media(orientation:portrait){main{display:none}.rotate{display:flex;position:fixed;inset:0;align-items:center;justify-content:center;text-align:center;color:#d5cec5}.rotate small{display:block;margin-top:18px;color:#968d84}}
 @media(orientation:landscape) and (max-height:900px){
-main{height:100dvh;min-height:100dvh}.panel{height:calc(100dvh - 12px);min-height:0;padding:12px 20px}.panel:before{display:none}
-.hero{height:calc(100dvh - 58px);overflow:hidden}.data{top:7%;height:82%;width:53%;padding:12px 18px 36px}.title{font-size:18px;letter-spacing:3px}.message blockquote{font-size:13px;line-height:1.35;overflow-wrap:anywhere}.timer{margin-top:10px;padding:6px 8px}.timer strong{font-size:16px}.nav{bottom:3px;left:14px;right:14px}.button{padding:5px 7px;font-size:6.5px}.twins{inset:5% 0 2%}
-}
+main{height:100dvh;min-height:100dvh}.panel{height:calc(100dvh - 12px);min-height:0;padding:12px 20px}.data{top:7%;height:82%;width:53%;padding:12px 18px}.title{font-size:18px}.message blockquote{font-size:13px;line-height:1.35}.timer{margin-top:10px;padding:6px 8px}.timer strong{font-size:16px}.nav{bottom:3px;left:14px;right:14px}.button{padding:5px 7px;font-size:6.5px}.twins{inset:5% 0 2%}}
 </style>
 </head>
 <body>
 <div class="rotate"><div>GIRA TU TRADUCTOR NOMAI<small>ORIENTACIÓN HORIZONTAL REQUERIDA</small></div></div>
 <main>
-<section class="panel">
-<div class="top"><span class="meta">EXPLORER · 30 CICLOS DE EXPLORACIÓN</span><span class="meta identity">SEÑAL 08 · GEMELOS</span></div>
-
-<div class="screen active" id="s1">
+<div class="panel">
 <div class="hero">
+<section id="s1" class="screen active">
 <div class="twins"><div class="split ceniza"><div class="sand-field"></div></div><div class="split brasa"><div class="ember-field"></div></div></div>
-<div class="data">
-<div class="signal">TRANSMISIÓN NOMAI DETECTADA · <b>GEMELOS</b></div>
-<h1 class="title">GEMELO BRASA</h1>
-<div class="subtitle">REGISTRO 08 · EL CICLO COMIENZA</div>
-<div class="message"><blockquote><span class="quote-text"></span></blockquote></div>
-<div class="nav"><span class="dots">● ○ ○</span><button class="button" onclick="go(2)">SIGUIENTE →</button></div>
-</div></div></div>
-
-<div class="screen" id="s2">
-<div class="hero">
+<div class="data"><div class="signal">TRANSMISIÓN NOMAI DETECTADA · GEMELOS</div><h1 class="title">GEMELO BRASA</h1><div class="subtitle">REGISTRO 08 · EL CICLO COMIENZA</div><div class="message"><blockquote class="quote-text"></blockquote></div></div>
+</section>
+<section id="s2" class="screen">
 <div class="twins"><div class="split ceniza"><div class="sand-field"></div></div><div class="split brasa"><div class="ember-field"></div></div></div>
-<div class="data">
-<div class="signal">TRANSMISIÓN NOMAI · <b>GEMELO CENIZA</b></div>
-<h1 class="title">GEMELO CENIZA</h1>
-<div class="subtitle">REGISTRO 09 · EL TIEMPO SE AGOTA</div>
-<div class="message"><blockquote><span class="quote-text"></span></blockquote></div>
-<div class="timer">TIEMPO RESTANTE<strong>EL CICLO NO ESPERA</strong></div>
-<div class="nav"><button class="button" onclick="go(1)">← ANTERIOR</button><span class="dots">○ ● ○</span><button class="button" onclick="go(3)">SIGUIENTE →</button></div>
-</div></div></div>
-
-<div class="screen" id="s3">
-<div class="hero">
+<div class="data"><div class="signal">TRANSMISIÓN NOMAI · GEMELO CENIZA</div><h1 class="title">GEMELO CENIZA</h1><div class="subtitle">REGISTRO 09 · EL TIEMPO SE AGOTA</div><div class="message"><blockquote class="quote-text"></blockquote></div><div class="timer">TIEMPO RESTANTE / EL CICLO NO ESPERA<strong>--:--</strong></div></div>
+</section>
+<section id="s3" class="screen">
 <div class="twins"><div class="split ceniza"><div class="sand-field"></div></div><div class="split brasa"><div class="ember-field"></div></div></div>
-<div class="data">
-<div class="signal">TRANSMISIÓN NOMAI · <b>GEMELOS</b></div>
-<h1 class="title">SEÑAL DE MISIÓN</h1>
-<div class="subtitle">REGISTRO 10 · UNA ÚLTIMA EXPLORACIÓN</div>
-<div class="message"><blockquote><span class="quote-text"></span></blockquote></div>
-<div class="nav"><button class="button" onclick="go(2)">← ANTERIOR</button><span class="dots">○ ○ ●</span><button class="button" onclick="go(1)">VOLVER AL INICIO ↺</button></div>
-</div></div></div>
-
+<div class="data"><div class="signal">TRANSMISIÓN NOMAI · GEMELOS</div><h1 class="title">SEÑAL DE MISIÓN</h1><div class="subtitle">REGISTRO 10 · UNA ÚLTIMA EXPLORACIÓN</div><div class="message"><blockquote class="quote-text"></blockquote></div></div>
+</section>
+<div class="nav"><button class="button" onclick="go(1)">01 · BRASA</button><button class="button" onclick="go(2)">02 · CENIZA</button><button class="button" onclick="go(3)">03 · MISIÓN</button></div>
+</div></div>
+</main>
 <script>
 let typing;
 const lines={
@@ -103,30 +63,25 @@ const lines={
 2:['La arena sigue cayendo. El ciclo no se detiene.','Así que esta vez la exploración tendrá que hacerse antes de que se acabe.'],
 3:['Una misión para dos exploradores.','Un tiempo limitado. Algo que descubrir. Y un ciclo que merece la pena vivir.']
 };
-function screenReady(n){document.querySelectorAll('#s'+n+' .button').forEach(b=>b.classList.add('ready'))}
 function typeMsg(n){
 clearInterval(typing);
 const el=document.querySelector('#s'+n+' .quote-text');if(!el)return;
 el.innerHTML='';let li=0,ci=0;
 typing=setInterval(()=>{
-if(li>=lines[n].length){clearInterval(typing);screenReady(n);return}
+if(li>=lines[n].length){clearInterval(typing);document.querySelectorAll('#s'+n+' .button').forEach(b=>b.classList.add('ready'));return}
 if(!el.children[li]){const p=document.createElement('p');el.appendChild(p)}
-const p=el.children[li],t=lines[n][li],prefix='<b style="color:#fff2df;text-shadow:0 1px 4px #000">GABRO:</b> ';
+const p=el.children[li],t=lines[n][li],prefix='<b style="color:#fff">GABRO:</b> ';
 if(ci<t.length){p.innerHTML=prefix+t.slice(0,++ci)}else{li++;ci=0}
-},42);
+},42)
 }
 function go(n){
 clearInterval(typing);
 document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-const screen=document.getElementById('s'+n);screen.classList.add('active');
+document.getElementById('s'+n).classList.add('active');
 document.querySelectorAll('.button').forEach(b=>b.classList.remove('ready'));
-const msg=screen.querySelector('.quote-text');if(msg)msg.innerHTML='';
-typeMsg(n);
+typeMsg(n)
 }
 window.addEventListener('load',()=>setTimeout(()=>go(1),250));
-window.addEventListener('orientationchange',()=>setTimeout(()=>{if(matchMedia('(orientation:landscape)').matches)go(1)},180));
 </script>
-</section>
-</main>
 </body>
 </html>
