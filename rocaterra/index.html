@@ -8,7 +8,7 @@ let typing,decodeTimer,fadeTimer;
 const lines={
   1:[['Lo conocido también puede esconder algo nuevo. A veces no hace falta encontrar otro mundo. Solo mirar de nuevo el que creías conocer.',false]],
   2:[['Hay curiosidades que no necesitan un objetivo claro, a veces solo hay que <span class="keyword">confiar</span> en la señal.',false]],
-  3:[['No parece que el explorador supiera exactamente qué estaba buscando.',false],['Eso nunca ha sido un problema.',false]]
+  3:[['No parece que el explorador sepa exactamente qué está buscando.',false],['Eso nunca ha sido un problema.',false]]
 };
 function typeMsg(n){
   clearInterval(typing);
@@ -29,7 +29,7 @@ function typeMsg(n){
     const prefix='<b style="color:#fff">ESKER:</b> ';
     if(ci<text.length){p.innerHTML=prefix+text.slice(0,++ci)}
     else{li++;ci=0}
-  },28);
+  },42);
 }
 function screenReady(n){
   const screen=document.getElementById('s'+n);
