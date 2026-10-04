@@ -2,21 +2,85 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gemelos</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gemelos — 30 Ciclos</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#07090b;color:#e9ecee;font-family:"Trebuchet MS",Arial,sans-serif}.rotate{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 72%,#e48a321c 0,#a8461818 22%,#24100c 55%,#070707 100%);color:#f0d8c2;font:14px monospace;letter-spacing:3px;overflow:hidden}.rotate>div{font-weight:bold;text-shadow:0 0 14px #ff8a3d66}.rotate small{display:block;margin-top:18px;font-size:9px;color:#bfa99a}.rotate:before{content:"";position:absolute;inset:-15%;background:radial-gradient(circle at 18% 82%,#ff9a3d 0 1px,transparent 2px),radial-gradient(circle at 72% 68%,#ffb45d 0 1px,transparent 2px),radial-gradient(circle at 45% 86%,#e85b24 0 1px,transparent 2px),radial-gradient(circle at 84% 42%,#ffcf7a 0 1px,transparent 2px);background-size:150px 180px,210px 230px,175px 205px,260px 280px;opacity:.7;animation:embers 4s ease-in-out infinite}.rotate:after{content:"";position:absolute;left:12%;right:12%;bottom:-18%;height:72%;background:radial-gradient(ellipse at 50% 100%,#ff7a2d44 0,#d9471e25 38%,transparent 72%);filter:blur(12px);animation:heat 4s ease-in-out infinite}@keyframes embers{0%,100%{transform:translateY(10px);opacity:.45}50%{transform:translateY(-12px);opacity:.8}}@keyframes heat{0%,100%{transform:scaleX(.95);opacity:.5}50%{transform:scaleX(1.06);opacity:.8}}main{min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;background:#07090b}.panel{position:relative;z-index:2;width:min(1100px,94%);height:min(760px,94vh);padding:30px;border:1px solid #778087;background:#080b0eee}.panel:before{content:"";position:absolute;inset:12px;border:1px solid #3d464c;pointer-events:none}.screen{display:none;height:100%}.screen.active{display:block}.top{display:flex;justify-content:space-between;border-bottom:1px solid #343c41;padding:5px 5px 13px}.meta{font:10px monospace;letter-spacing:2.5px;color:#9da9af}.identity{color:#c3cbd0}.hero{display:block;height:calc(100vh - 110px);position:relative}.data{position:absolute;left:3%;top:7%;width:53%;height:82%;padding:12px 18px;border-left:1px solid #aeb9be;background:#0d1012}.signal{font:10px monospace;letter-spacing:3px;color:#aab5bb;margin-bottom:7px}.title{font-size:22px;letter-spacing:4px;font-weight:normal;margin:0 0 5px;color:#edf0f1}.subtitle{font:9px monospace;letter-spacing:1.5px;color:#89949a;margin-bottom:18px}.message blockquote{margin:0;padding-left:16px;border-left:2px solid #aeb9be;font:16px/1.5 monospace;color:#dce1e3}.nav{display:flex;justify-content:space-between;align-items:center;position:absolute;left:20px;right:35px;bottom:8px}.button{border:1px solid #68757b;background:#0d1114;color:#cbd4d8;padding:10px 15px;font:10px monospace;letter-spacing:2px}@media(orientation:portrait){main{display:none!important}.rotate{display:flex!important}}@media(orientation:landscape) and (max-height:900px){main{height:100dvh;min-height:100dvh}.panel{height:calc(100dvh - 12px);min-height:0;padding:12px 20px}.panel:before{display:none}.hero{height:calc(100dvh - 58px);overflow:hidden}.data{top:7%;height:82%;width:53%;padding:12px 18px}.title{font-size:18px;letter-spacing:3px}.message blockquote{font-size:13px;line-height:1.35;overflow-wrap:anywhere}.nav{bottom:3px;left:14px;right:14px}.button{padding:5px 7px;font-size:6.5px}}
+*{box-sizing:border-box}
+body{margin:0;background:#07090b;color:#e9ecee;font-family:"Trebuchet MS",Arial,sans-serif;overflow:hidden}
+main{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:12px;background:radial-gradient(circle at 50% 65%,#7c30151c 0,#180b08 38%,#050607 100%);overflow:hidden}
+main:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 16% 78%,#ff9b3d 0 1px,transparent 2px),radial-gradient(circle at 72% 66%,#ffb45d 0 1px,transparent 2px),radial-gradient(circle at 44% 86%,#e85b24 0 1px,transparent 2px),radial-gradient(circle at 86% 38%,#ffd080 0 1px,transparent 2px);background-size:145px 175px,205px 225px,170px 200px,255px 275px;opacity:.5;animation:embers 5s ease-in-out infinite}
+main:after{content:"";position:absolute;left:18%;right:18%;bottom:-20%;height:75%;background:radial-gradient(ellipse at 50% 100%,#ff702c38 0,#d9471e18 40%,transparent 72%);filter:blur(13px);animation:heat 5s ease-in-out infinite}
+@keyframes embers{0%,100%{transform:translateY(8px);opacity:.4}50%{transform:translateY(-10px);opacity:.75}}
+@keyframes heat{0%,100%{transform:scaleX(.94);opacity:.5}50%{transform:scaleX(1.07);opacity:.8}}
+.panel{position:relative;z-index:2;width:min(1100px,94%);height:min(760px,94vh);padding:30px;border:1px solid #777f84;background:#080b0eee;box-shadow:0 0 50px #000}
+.panel:before{content:"";position:absolute;inset:12px;border:1px solid #3d464c;pointer-events:none}
+.screen{height:100%;position:relative}
+.topline{display:flex;justify-content:space-between;border-bottom:1px solid #343c41;padding:5px 5px 11px}
+.meta{font:10px monospace;letter-spacing:2.5px;color:#9da9af}
+.identity{color:#d1a477}
+.content{position:absolute;left:5%;top:10%;width:88%;height:76%;padding:18px 24px;border-left:1px solid #8b6b55;background:#0d1012e8}
+.signal{font:10px monospace;letter-spacing:3px;color:#b6a59b;margin-bottom:8px}
+h1{font-size:24px;letter-spacing:5px;font-weight:normal;margin:0 0 8px;color:#edf0f1}
+.subtitle{font:9px monospace;letter-spacing:2px;color:#8f999e}
+.bar{height:2px;background:#30251f;margin:24px 0 22px;overflow:hidden}
+.fill{height:100%;width:0;background:#df7b35;box-shadow:0 0 12px #df7b3566}
+.analyzing{font:10px monospace;letter-spacing:2.5px;color:#a9a1a0}
+.message{display:none;margin-top:22px}
+.message.show{display:block;animation:appear .7s ease both}
+@keyframes appear{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.message h2{font:10px monospace;letter-spacing:2.5px;color:#a9a1a0;border-bottom:1px solid #49362b;padding-bottom:9px;margin:0 0 20px}
+.message blockquote{margin:0;padding-left:17px;border-left:2px solid #df7b35;font:17px/1.55 monospace;color:#dce1e3;max-width:850px}
+.keyword{color:#ff9a4a;font-weight:bold;text-shadow:0 0 8px #e18a3a55}
+.nav{position:absolute;left:5%;right:5%;bottom:6%;display:flex;justify-content:flex-end}
+.button{border:1px solid #725e51;background:#0d1114;color:#cbd4d8;padding:9px 14px;font:9px monospace;letter-spacing:2px}
+.rotate{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 72%,#e48a321c 0,#a8461818 22%,#24100c 55%,#070707 100%);color:#f0d8c2;font:14px monospace;letter-spacing:3px;overflow:hidden}
+.rotate>div{font-weight:bold;text-shadow:0 0 14px #ff8a3d66}
+.rotate small{display:block;margin-top:18px;font-size:9px;color:#bfa99a}
+.rotate:before{content:"";position:absolute;inset:-15%;background:radial-gradient(circle at 18% 82%,#ff9a3d 0 1px,transparent 2px),radial-gradient(circle at 72% 68%,#ffb45d 0 1px,transparent 2px),radial-gradient(circle at 45% 86%,#e85b24 0 1px,transparent 2px),radial-gradient(circle at 84% 42%,#ffcf7a 0 1px,transparent 2px);background-size:150px 180px,210px 230px,175px 205px,260px 280px;opacity:.7;animation:embers 4s ease-in-out infinite}
+.rotate:after{content:"";position:absolute;left:12%;right:12%;bottom:-18%;height:72%;background:radial-gradient(ellipse at 50% 100%,#ff7a2d44 0,#d9471e25 38%,transparent 72%);filter:blur(12px);animation:heat 4s ease-in-out infinite}
+@media(orientation:portrait){main{display:none!important}.rotate{display:flex!important}}
+@media(orientation:landscape) and (max-height:900px){
+main{height:100dvh;min-height:100dvh;padding:6px 10px}
+.panel{height:calc(100dvh - 12px);min-height:0;padding:12px 20px}
+.panel:before{display:none}
+.content{top:9%;height:78%;padding:12px 18px}
+.topline{padding-bottom:6px}.meta{font-size:7px;letter-spacing:1.6px}
+h1{font-size:19px;letter-spacing:3px;margin-bottom:4px}.subtitle,.signal{font-size:7px}
+.bar{margin:13px 0 12px}.analyzing,.message h2{font-size:7px}.message{margin-top:13px}.message blockquote{font-size:14px;line-height:1.35}.nav{bottom:3%;}.button{padding:5px 8px;font-size:6.5px}
+}
 </style>
 </head>
-<body><div class="rotate" aria-label="Gira el dispositivo">
-  <div>
-    <div>GIRA TU TRADUCTOR NOMAI</div>
-    <small>ORIENTACIÓN HORIZONTAL REQUERIDA</small>
-  </div>
+<body>
+<div class="rotate" aria-label="Gira el dispositivo"><div><div>GIRA TU TRADUCTOR NOMAI</div><small>ORIENTACIÓN HORIZONTAL REQUERIDA</small></div></div>
+<main>
+<section class="panel">
+<div class="screen">
+<div class="topline"><span class="meta">EXPLORER · 30 CICLOS DE EXPLORACIÓN</span><span class="meta identity">SEÑAL 08 · GEMELOS</span></div>
+<div class="content">
+<div class="signal">NOMAI TRANSLATOR · SIGNAL 08</div>
+<h1 id="title">DESCIFRANDO SEÑAL...</h1>
+<div class="subtitle">REGISTRO DE SEÑAL · GEMELOS</div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<div class="analyzing" id="status">ANALIZANDO SEÑAL...</div>
+<div class="message" id="message">
+<h2>MENSAJE DESCIFRADO</h2>
+<blockquote>«El tiempo sigue avanzando, aunque a veces parezca que seguimos exactamente en el mismo lugar.»</blockquote>
 </div>
-<main><section class="panel"><div class="top"><span class="meta">EXPLORER · 30 CICLOS DE EXPLORACIÓN</span><span class="meta identity">SEÑAL 08 · GEMELOS</span></div>
-<h1>GEMELOS</h1>
-<p>30 CICLOS DE EXPLORACIÓN</p>
-</section></main>
+</div>
+<div class="nav"><button class="button" type="button">SEÑAL ESTABLE</button></div>
+</div>
+</section>
+</main>
+<script>
+(function(){
+const fill=document.getElementById("fill"),title=document.getElementById("title"),status=document.getElementById("status"),message=document.getElementById("message");
+function start(){
+fill.style.transition="none";fill.style.width="0%";message.classList.remove("show");title.textContent="DESCIFRANDO SEÑAL...";status.textContent="ANALIZANDO SEÑAL...";
+requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.transition="width 5000ms linear";fill.style.width="100%";});});
+setTimeout(function(){title.textContent="SEÑAL DESCIFRADA";status.textContent="MENSAJE 01";message.classList.add("show");},5000);
+}
+window.addEventListener("load",start);
+})();
+</script>
 </body>
 </html>
