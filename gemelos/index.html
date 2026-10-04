@@ -53,14 +53,15 @@ main:after{content:"";position:absolute;inset:-30%;background:radial-gradient(ci
 @media(orientation:landscape) and (max-height:900px){
 main{height:100dvh;min-height:100dvh}.panel{height:calc(100dvh - 12px);min-height:0;padding:12px 20px}.panel:before{display:none}
 .panel:has(#s1.active){background:transparent;border-color:transparent;box-shadow:none}
-.panel:has(#s1.active) .top{border-bottom-color:#e0c39a66;text-shadow:0 1px 5px #000}
-.panel:has(#s1.active) .hero{height:calc(100dvh - 58px)}
-#s1.active .data{background:linear-gradient(90deg,#473b32bb 0,#473b3288 55%,#2b211a55 100%);border-left-color:#e0c39a99;text-shadow:0 2px 5px #000,0 0 12px #0008}
-#s1.active .signal,#s1.active .subtitle{color:#f0dfc7;text-shadow:0 1px 4px #000}
-#s1.active .title{color:#fff4e6;text-shadow:0 2px 7px #000,0 0 14px #000}
-#s1.active .message blockquote{color:#fff7ed;text-shadow:0 2px 5px #000,0 0 12px #000}
+.panel:has(#s1.active) .top{position:relative;z-index:4;border-bottom-color:#e0c39a66;text-shadow:0 2px 6px #000}
+.panel:has(#s1.active) .hero{position:absolute;inset:0;height:100%;z-index:1}
 #s1.active .twins{inset:0;border:0;transform:none}
 #s1.active .split{height:100%}
+#s1.active .data{z-index:3;left:4%;top:14%;width:46%;height:68%;padding:14px 20px 36px;background:linear-gradient(90deg,#241b1680,#241b1640 72%,transparent);border-left-color:#f1d5a988;text-shadow:0 2px 6px #000,0 0 14px #000}
+#s1.active .signal,#s1.active .subtitle{color:#fff0d9;text-shadow:0 2px 5px #000}
+#s1.active .title{font-size:22px;color:#fff8ee;text-shadow:0 2px 7px #000,0 0 16px #000}
+#s1.active .message blockquote{font-size:16px;line-height:1.5;color:#fffaf3;text-shadow:0 2px 6px #000,0 0 14px #000}
+#s1.active .nav{z-index:4}
 .hero{height:calc(100dvh - 58px);overflow:hidden}.data{top:7%;height:82%;width:53%;padding:12px 18px 36px}.title{font-size:18px;letter-spacing:3px}.message blockquote{font-size:13px;line-height:1.35;overflow-wrap:anywhere}.timer{margin-top:10px;padding:6px 8px}.timer strong{font-size:16px}.nav{bottom:3px;left:14px;right:14px}.button{padding:5px 7px;font-size:6.5px}.twins{inset:5% 0 2%}
 }
 </style>
