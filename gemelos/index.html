@@ -1,86 +1,57 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gemelos — 30 Ciclos</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#07090b;color:#e9ecee;font-family:"Trebuchet MS",Arial,sans-serif;overflow:auto;overscroll-behavior-y:auto}
-main{position:relative;min-height:101vh;display:flex;align-items:center;justify-content:center;padding:12px;background:radial-gradient(circle at 50% 65%,#7c30151c 0,#180b08 38%,#050607 100%);overflow:hidden}
-main:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 16% 78%,#ff9b3d 0 1px,transparent 2px),radial-gradient(circle at 72% 66%,#ffb45d 0 1px,transparent 2px),radial-gradient(circle at 44% 86%,#e85b24 0 1px,transparent 2px),radial-gradient(circle at 86% 38%,#ffd080 0 1px,transparent 2px);background-size:145px 175px,205px 225px,170px 200px,255px 275px;opacity:.5;animation:embers 5s ease-in-out infinite}
-main:after{content:"";position:absolute;left:18%;right:18%;bottom:-20%;height:75%;background:radial-gradient(ellipse at 50% 100%,#ff702c38 0,#d9471e18 40%,transparent 72%);filter:blur(13px);animation:heat 5s ease-in-out infinite}
-@keyframes embers{0%,100%{transform:translateY(8px);opacity:.4}50%{transform:translateY(-10px);opacity:.75}}
-@keyframes heat{0%,100%{transform:scaleX(.94);opacity:.5}50%{transform:scaleX(1.07);opacity:.8}}
+main{min-height:101vh;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;background:radial-gradient(circle at 50% 45%,#3b170c 0,#180b08 30%,#090708 60%,#050607 100%)}
+main:before{content:"";position:absolute;width:150vmax;height:150vmax;border-radius:50%;background:repeating-radial-gradient(ellipse at 50% 50%,transparent 0 6%,#ff8b3210 6.2% 6.35%,transparent 6.6% 12%),conic-gradient(from 20deg,transparent,#df7b3520,transparent 22%,#ff9b3d18,transparent 48%,#b94d2920,transparent 72%);animation:drift 25s linear infinite}
+main:after{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 20% 30%,#ffd08055 0 1px,transparent 2px),radial-gradient(circle at 70% 65%,#ff9b5a55 0 1px,transparent 2px),radial-gradient(circle at 55% 18%,#e85b24 0 1px,transparent 2px);background-size:170px 170px,230px 230px,310px 310px;opacity:.45;animation:stars 16s linear infinite}
+@keyframes drift{to{transform:rotate(360deg)}}@keyframes stars{to{transform:translate(50px,25px)}}
 .panel{position:relative;z-index:2;width:min(1100px,94%);height:min(760px,94vh);padding:30px;border:1px solid #777f84;background:#080b0eee;box-shadow:0 0 50px #000}
 .panel:before{content:"";position:absolute;inset:12px;border:1px solid #3d464c;pointer-events:none}
 .screen{height:100%;position:relative}
-.topline{display:flex;justify-content:space-between;border-bottom:1px solid #343c41;padding:5px 5px 11px}
-.meta{font:10px monospace;letter-spacing:2.5px;color:#9da9af}
-.identity{color:#d1a477}
-.content{position:absolute;left:3%;top:7%;width:94%;height:82%;padding:24px 30px;border-left:1px solid #8b6b55;background:#0d1012e8}
-.signal{font:10px monospace;letter-spacing:3px;color:#b6a59b;margin-bottom:8px}
-h1{font-size:27px;letter-spacing:5px;font-weight:normal;margin:0 0 8px;color:#edf0f1}
-.subtitle{font:9px monospace;letter-spacing:2px;color:#8f999e}
-.bar{height:2px;background:#30251f;margin:24px 0 22px;overflow:hidden}
-.fill{height:100%;width:0;background:#df7b35;box-shadow:0 0 12px #df7b3566}
-.analyzing{font:10px monospace;letter-spacing:2.5px;color:#a9a1a0}
-.message{display:none;margin-top:22px}
-.message.show{display:block;animation:appear .7s ease both}
-@keyframes appear{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
-.message h2{font:10px monospace;letter-spacing:2.5px;color:#a9a1a0;border-bottom:1px solid #49362b;padding-bottom:9px;margin:0 0 20px}
-.message blockquote{margin:0;padding-left:20px;border-left:2px solid #df7b35;font:18px/1.6 monospace;color:#dce1e3;max-width:none;width:96%;}
-.keyword{color:#ff9a4a;font-weight:bold;text-shadow:0 0 8px #e18a3a55}
-.nav{position:absolute;left:5%;right:5%;bottom:6%;display:flex;justify-content:flex-end}
-.button{border:1px solid #725e51;background:#0d1114;color:#cbd4d8;padding:9px 14px;font:9px monospace;letter-spacing:2px}
+.topline{display:flex;justify-content:space-between;border-bottom:1px solid #343c41;padding:5px 5px 13px}
+.meta{font:10px monospace;letter-spacing:2.5px;color:#9da9af}.identity{color:#d1a477}
+.hero{display:grid;grid-template-columns:30% 70%;height:calc(100vh - 110px)}
+.planet{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.planet:before{display:block;content:"";position:absolute;width:235px;height:235px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#000 0 39%,#05040a 40% 46%,#3b3a46 47% 49%,#09070d 50% 53%,#ff6a2a 54% 56%,#e83e24 57% 60%,#ff9b42 61% 63%,#74232c 64% 66%,#23143a 67% 70%,transparent 71%),radial-gradient(circle at 34% 42%,#ffbd63 0 3%,transparent 12%),radial-gradient(circle at 67% 36%,#9b5cff 0 4%,transparent 14%),radial-gradient(circle at 70% 70%,#ff552f 0 4%,transparent 15%),radial-gradient(circle at 29% 72%,#2549a5 0 5%,transparent 17%);box-shadow:0 0 10px #ff5a2f66,0 0 24px #8b4cff55,0 0 50px #2b2c9a33,0 0 85px #b56cff12;animation:gemelosPulse 5s ease-in-out infinite}
+.planet:after{display:block;content:"";position:absolute;width:255px;height:255px;border-radius:50%;background:radial-gradient(circle at 50% 50%,transparent 0 48%,#432b8a44 53%,#243a9a55 62%,#24134a22 75%,transparent 78%),radial-gradient(circle at 36% 35%,#ff5b2f55 0 6%,transparent 24%),radial-gradient(circle at 68% 66%,#6b4cff44 0 7%,transparent 28%);filter:blur(9px);opacity:.75;animation:gemelosGlow 7s ease-in-out infinite}
+@keyframes gemelosPulse{50%{transform:scale(1.018)}}@keyframes gemelosGlow{50%{opacity:.95;transform:scale(1.025)}}
+.data{padding:7px 12px 36px;position:relative;min-width:0;height:100%;overflow:hidden}
+.signal{font:10px monospace;letter-spacing:3px;color:#b6a59b;margin-bottom:7px}.signal b{color:#ff9a4d}
+.title{font-size:22px;letter-spacing:4px;font-weight:normal;margin:0 0 5px;color:#eee7f0}
+.subtitle{font:9px monospace;letter-spacing:1.5px;color:#9d9690;margin-bottom:7px}
+.message{min-height:100px;display:flex;align-items:center}
+.message blockquote{margin:0;padding-left:16px;border-left:2px solid #df7b35;font:16px/1.5 "Space Mono",monospace;color:#e2dcdd}
+.keyword{color:#ff9848;font-weight:bold;text-shadow:0 0 9px #ff873866}
+.nav{display:flex;justify-content:flex-end;align-items:center;margin-top:20px;position:absolute;left:20px;right:35px;bottom:8px}
+.button{border:1px solid #725e51;background:#120e0b;color:#d5c9c2;padding:10px 15px;font:10px monospace;letter-spacing:2px}
 .rotate{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 72%,#e48a321c 0,#a8461818 22%,#24100c 55%,#070707 100%);color:#f0d8c2;font:14px monospace;letter-spacing:3px;overflow:hidden}
-.rotate>div{font-weight:bold;text-shadow:0 0 14px #ff8a3d66}
-.rotate small{display:block;margin-top:18px;font-size:9px;color:#bfa99a}
+.rotate>div{font-weight:bold;text-shadow:0 0 14px #ff8a3d66}.rotate small{display:block;margin-top:18px;font-size:9px;color:#bfa99a}
 .rotate:before{content:"";position:absolute;inset:-15%;background:radial-gradient(circle at 18% 82%,#ff9a3d 0 1px,transparent 2px),radial-gradient(circle at 72% 68%,#ffb45d 0 1px,transparent 2px),radial-gradient(circle at 45% 86%,#e85b24 0 1px,transparent 2px),radial-gradient(circle at 84% 42%,#ffcf7a 0 1px,transparent 2px);background-size:150px 180px,210px 230px,175px 205px,260px 280px;opacity:.7;animation:embers 4s ease-in-out infinite}
 .rotate:after{content:"";position:absolute;left:12%;right:12%;bottom:-18%;height:72%;background:radial-gradient(ellipse at 50% 100%,#ff7a2d44 0,#d9471e25 38%,transparent 72%);filter:blur(12px);animation:heat 4s ease-in-out infinite}
+@keyframes embers{0%,100%{transform:translateY(8px);opacity:.4}50%{transform:translateY(-10px);opacity:.75}}@keyframes heat{0%,100%{transform:scaleX(.94);opacity:.5}50%{transform:scaleX(1.07);opacity:.8}}
 @media(orientation:portrait){main{display:none!important}.rotate{display:flex!important}}
-@media(orientation:landscape) and (max-height:900px){
-main{height:100dvh;min-height:101dvh;padding:6px 10px}
-.panel{height:calc(100dvh - 12px);min-height:0;padding:12px 20px}
-.panel:before{display:none}
-.content{top:7%;height:82%;padding:16px 20px}
-.topline{padding-bottom:6px}.meta{font-size:7px;letter-spacing:1.6px}
-h1{font-size:21px;letter-spacing:3px;margin-bottom:4px}.subtitle,.signal{font-size:7px}
-.bar{margin:13px 0 12px}.analyzing,.message h2{font-size:7px}.message{margin-top:13px}.message blockquote{font-size:15px;line-height:1.45;width:96%}.nav{bottom:3%;}.button{padding:5px 8px;font-size:6.5px}
-}
-</style>
-</head>
-<body>
+@media(orientation:landscape) and (max-height:900px){main{height:100dvh;min-height:101dvh;padding:6px 10px}.panel{height:calc(100dvh - 12px);min-height:0;padding:12px 20px}.panel:before{display:none}.hero{min-height:0;height:calc(100dvh - 58px);grid-template-columns:30% 70%;overflow:hidden}.planet:before{width:175px;height:175px}.planet:after{width:175px;height:175px}.data{padding:7px 12px 36px}.title{font-size:18px;letter-spacing:3px}.message{min-height:55px;height:auto;align-items:flex-start;padding-top:4px}.message blockquote{font-size:13px;line-height:1.35;overflow-wrap:anywhere}.nav{margin-top:3px;bottom:3px;left:14px;right:14px}.button{padding:5px 7px;font-size:6.5px}}
+</style></head><body>
 <div class="rotate" aria-label="Gira el dispositivo"><div><div>GIRA TU TRADUCTOR NOMAI</div><small>ORIENTACIÓN HORIZONTAL REQUERIDA</small></div></div>
 <main>
 <section class="panel">
-<div class="screen">
 <div class="topline"><span class="meta">EXPLORER · 30 CICLOS DE EXPLORACIÓN</span><span class="meta identity">SEÑAL 06 · GEMELOS</span></div>
-<div class="content">
+<div class="screen"><div class="hero"><div class="planet"></div><div class="data">
 <div class="signal">NOMAI TRANSLATOR · SIGNAL 06</div>
-<h1 id="title">DESCIFRANDO SEÑAL...</h1>
+<h1 class="title" id="title">DESCIFRANDO SEÑAL...</h1>
 <div class="subtitle">REGISTRO DE SEÑAL · GEMELOS</div>
-<div class="bar"><div class="fill" id="fill"></div></div>
-<div class="analyzing" id="status">ANALIZANDO SEÑAL...</div>
-<div class="message" id="message">
-<h2>MENSAJE DESCIFRADO</h2>
-<blockquote>«El tiempo sigue avanzando, aunque a veces parezca que seguimos exactamente en el mismo lugar.»</blockquote>
-</div>
-</div>
+<div class="message" id="message"><blockquote>«El tiempo sigue avanzando, aunque a veces parezca que seguimos exactamente en el mismo lugar.»</blockquote></div>
 <div class="nav"><button class="button" type="button">SEÑAL ESTABLE</button></div>
-</div>
+</div></div></div>
 </section>
-</main>
-<script>
+</main><script>
 (function(){
-const fill=document.getElementById("fill"),title=document.getElementById("title"),status=document.getElementById("status"),message=document.getElementById("message");
+const title=document.getElementById("title"),message=document.getElementById("message");
 function start(){
-fill.style.transition="none";fill.style.width="0%";message.classList.remove("show");title.textContent="DESCIFRANDO SEÑAL...";status.textContent="ANALIZANDO SEÑAL...";
-requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.transition="width 5000ms linear";fill.style.width="100%";});});
-setTimeout(function(){title.textContent="SEÑAL DESCIFRADA";status.textContent="MENSAJE 01";message.classList.add("show");},5000);
+title.textContent="DESCIFRANDO SEÑAL...";
+message.style.opacity="0";
+setTimeout(function(){title.textContent="SEÑAL DESCIFRADA";message.style.opacity="1";message.style.transition="opacity .7s ease";},5000);
 }
 window.addEventListener("load",start);
 })();
-</script>
-</body>
-</html>
+</script></body></html>
