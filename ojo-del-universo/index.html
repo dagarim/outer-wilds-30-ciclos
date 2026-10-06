@@ -41,8 +41,8 @@ body{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth}
 
 .quantum-moon{
   position:absolute;
-  left:50%;
-  top:50%;
+  left:84%;
+  top:48%;
   width:clamp(58px,13vw,92px);
   aspect-ratio:1;
   transform:translate(-50%,-50%) scale(.72);
@@ -224,6 +224,7 @@ h1{
   #universe{padding:24px 18px 70px;min-height:100svh;overflow:visible}
   .nomai-ring{width:110vw}
   .eye-mark{width:82px;height:82px}
+  .quantum-moon{left:90%;top:42%;}
   .message{line-height:1.7}
 }
 @media(prefers-reduced-motion:reduce){
@@ -298,11 +299,12 @@ h1{
   const speed=42;
   const pause=850;
 
-  function keepVisible(el){
-    const rect=el.getBoundingClientRect();
-    const bottomGap=window.innerHeight-80;
-    if(rect.bottom>bottomGap){
-      window.scrollBy({top:Math.min(rect.bottom-bottomGap,220),behavior:"smooth"});
+  function teleprompter(el){
+    const target=el.getBoundingClientRect();
+    const ideal=window.innerHeight*0.56;
+    const delta=target.top-ideal;
+    if(Math.abs(delta)>34){
+      window.scrollBy({top:delta,behavior:"smooth"});
     }
   }
 
@@ -317,7 +319,10 @@ h1{
       function type(){
         p.textContent=text.slice(0,i++);
         if(i<=text.length) setTimeout(type,speed);
-        else setTimeout(next,pause);
+        else {
+          teleprompter(p);
+          setTimeout(next,pause);
+        }
       }
       type();
     }
