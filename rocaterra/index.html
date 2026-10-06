@@ -27,9 +27,12 @@ function typeMsg(n){
       el.appendChild(p);
     }
     const p=el.children[li],text=arr[li][0];
-    const prefix='<b style="color:#fff">ESKER:</b> ';
-    if(ci<text.length){p.innerHTML=prefix+text.slice(0,++ci)}
-    else{
+    const prefix='ESKER: ';
+    const total=prefix.length+text.length;
+    if(ci<total){
+      const visible=ci++;
+      p.innerHTML='<b style="color:#fff">'+prefix.slice(0,Math.min(visible+1,prefix.length))+'</b>'+text.slice(0,Math.max(0,visible+1-prefix.length));
+    } else{
       li++;ci=0;
       if(n===3&&li===1)pauseUntil=Date.now()+1000;
     }
