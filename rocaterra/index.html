@@ -16,9 +16,10 @@ function typeMsg(n){
   const el=els[0];
   if(!el)return;
   el.innerHTML='';
-  let li=0,ci=0;
+  let li=0,ci=0,pauseUntil=0;
   const arr=lines[n]||[];
   typing=setInterval(()=>{
+    if(Date.now()<pauseUntil)return;
     if(li>=arr.length){clearInterval(typing);screenReady(n);return}
     if(!el.children[li]){
       const p=document.createElement('p');
@@ -28,7 +29,10 @@ function typeMsg(n){
     const p=el.children[li],text=arr[li][0];
     const prefix='<b style="color:#fff">ESKER:</b> ';
     if(ci<text.length){p.innerHTML=prefix+text.slice(0,++ci)}
-    else{li++;ci=0}
+    else{
+      li++;ci=0;
+      if(n===3&&li===1)pauseUntil=Date.now()+2000;
+    }
   },42);
 }
 function screenReady(n){
