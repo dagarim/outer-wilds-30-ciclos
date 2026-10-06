@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif}
-body{overflow-x:hidden}
+body{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth}
 #universe{
   min-height:100vh;
   min-height:100svh;
@@ -88,7 +88,7 @@ body{overflow-x:hidden}
   0%{opacity:0;transform:translateY(5px);filter:blur(2px)}
   100%{opacity:1;transform:none;filter:blur(0)}
 }
-.signal span{display:block}
+.signal span{display:block}\n.intro-name{opacity:0;animation:introSolanum 4s ease-out 5.9s forwards}\n.intro-title{opacity:0;animation:introTitle 4s ease-out 7.2s forwards}\n@keyframes introSolanum{from{opacity:0;transform:translateY(6px);letter-spacing:.6em}to{opacity:1;transform:none;letter-spacing:.35em}}\n@keyframes introTitle{from{opacity:0;transform:translateY(8px);letter-spacing:.28em}to{opacity:1;transform:none;letter-spacing:.16em}}
 .signal .eye{color:#b18bd0}
 .solanum{
   font:11px/1.6 "Courier New",monospace;
@@ -141,7 +141,7 @@ h1{
 }
 #start{display:none}
 @media(max-width:600px){
-  #universe{padding:24px 18px}
+  #universe{padding:24px 18px 70px;min-height:100svh;overflow:visible}
   .nomai-ring{width:110vw}
   .eye-mark{width:82px;height:82px}
   .message{line-height:1.7}
@@ -217,7 +217,7 @@ h1{
   const speed=42;
   const pause=850;
 
-  function typeLines(lines,target,done){
+  function keepVisible(el){\n    const rect=el.getBoundingClientRect();\n    const bottomGap=window.innerHeight-80;\n    if(rect.bottom>bottomGap){\n      window.scrollBy({top:Math.min(rect.bottom-bottomGap,220),behavior:"smooth"});\n    }\n  }\n\n  function typeLines(lines,target,done){
     let line=0;
     function next(){
       if(line>=lines.length){done&&done();return}
@@ -242,7 +242,7 @@ h1{
         typeLines(last,lastBox,null);
       },7800);
     });
-  },1200);
+  },9800);
 })();
 </script>
 </body>
