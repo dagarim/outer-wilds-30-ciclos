@@ -62,7 +62,7 @@ body{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth}
   55%{opacity:.28;transform:translate(-50%,-50%) scale(.96)}
   58%{opacity:0;transform:translate(-50%,-50%) scale(.82)}
 }
-\n.stones{position:absolute;inset:0;pointer-events:none}
+.stones{position:absolute;inset:0;pointer-events:none}
 .quantum-moon{
   position:absolute;
   left:50%;
@@ -113,26 +113,23 @@ body{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth}
 .quantum-symbol{
   display:inline-block;
   width:15px;
-  height:19px;
-  margin:0 10px 0 2px;
-  vertical-align:-5px;
-  position:relative;
-  border:1px solid rgba(168,107,219,.58);
-  border-radius:42% 58% 48% 52%;
-  transform:rotate(18deg);
-  box-shadow:0 0 8px rgba(168,107,219,.24);
-  opacity:.78;
+  height:20px;
+  margin:0 9px 0 1px;
+  vertical-align:-6px;
+  overflow:visible;
+  opacity:.72;
+  filter:drop-shadow(0 0 5px rgba(168,107,219,.2));
   animation:quantumSymbol 5s ease-in-out infinite;
 }
-.quantum-symbol:before{
-  content:"";
-  position:absolute;
-  width:5px;
-  height:7px;
-  left:4px;
-  top:5px;
-  border:1px solid rgba(168,107,219,.35);
-  border-radius:50%;
+.quantum-symbol path{
+  fill:none;
+  stroke:rgba(168,107,219,.78);
+  stroke-width:1.15;
+  stroke-linejoin:round;
+}
+.quantum-symbol path+path{
+  stroke:rgba(168,107,219,.42);
+  stroke-width:.85;
 }
 @keyframes quantumSymbol{
   0%,100%{opacity:.5;box-shadow:0 0 6px rgba(168,107,219,.16)}
@@ -171,7 +168,7 @@ body{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth}
   0%{opacity:0;transform:translateY(5px);filter:blur(2px)}
   100%{opacity:1;transform:none;filter:blur(0)}
 }
-.signal span{display:block}\n.intro-name{opacity:0;animation:introSolanum 4s ease-out 5.9s forwards}\n.intro-title{opacity:0;animation:introTitle 4s ease-out 7.2s forwards}\n@keyframes introSolanum{from{opacity:0;transform:translateY(6px);letter-spacing:.6em}to{opacity:1;transform:none;letter-spacing:.35em}}\n@keyframes introTitle{from{opacity:0;transform:translateY(8px);letter-spacing:.28em}to{opacity:1;transform:none;letter-spacing:.16em}}
+.signal span{display:block}.intro-name{opacity:0;animation:introSolanum 4s ease-out 5.9s forwards}.intro-title{opacity:0;animation:introTitle 4s ease-out 7.2s forwards}\n@keyframes introSolanum{from{opacity:0;transform:translateY(6px);letter-spacing:.6em}to{opacity:1;transform:none;letter-spacing:.35em}}\n@keyframes introTitle{from{opacity:0;transform:translateY(8px);letter-spacing:.28em}to{opacity:1;transform:none;letter-spacing:.16em}}
 .signal .eye{color:#b18bd0}
 .solanum{
   font:11px/1.6 "Courier New",monospace;
@@ -248,7 +245,7 @@ h1{
   <section class="panel" aria-live="polite">
     <div class="signal">
   <span class="intro-line">
-    <span class="quantum-symbol" aria-hidden="true"></span><span class="intro-word">QUANTUM</span>
+    <svg class="quantum-symbol" aria-hidden="true" viewBox="0 0 24 30"><path d="M12 2 L19 7 L21 16 L15 27 L7 24 L3 15 L5 7 Z"></path><path d="M9 8 L15 6 L18 12 L14 19 L8 17 L6 12 Z"></path></svg><span class="intro-word">QUANTUM</span>
     <span class="intro-word">LOCATION</span>
     <span class="intro-word">DETECTED</span>
   </span>
@@ -300,7 +297,15 @@ h1{
   const speed=42;
   const pause=850;
 
-  function keepVisible(el){\n    const rect=el.getBoundingClientRect();\n    const bottomGap=window.innerHeight-80;\n    if(rect.bottom>bottomGap){\n      window.scrollBy({top:Math.min(rect.bottom-bottomGap,220),behavior:"smooth"});\n    }\n  }\n\n  function typeLines(lines,target,done){
+  function keepVisible(el){
+    const rect=el.getBoundingClientRect();
+    const bottomGap=window.innerHeight-80;
+    if(rect.bottom>bottomGap){
+      window.scrollBy({top:Math.min(rect.bottom-bottomGap,220),behavior:"smooth"});
+    }
+  }
+
+  function typeLines(lines,target,done){
     let line=0;
     function next(){
       if(line>=lines.length){done&&done();return}
