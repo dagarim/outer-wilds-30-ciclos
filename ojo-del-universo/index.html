@@ -361,9 +361,10 @@ h1{
     next();
   }
 
-  box.classList.add("ready");
-  typeSpeaker(box,function(){
-    typeLines(first,box,function(){
+  setTimeout(function(){
+    box.classList.add("ready");
+    typeSpeaker(box,function(){
+      typeLines(first,box,function(){
       revealAndScroll(final);
       typeLines(last,lastBox,function(){
         setTimeout(function(){
@@ -374,7 +375,7 @@ h1{
         },120);
       });
     });
-  });
+  },9800);
 })();
 </script>
 </body>
