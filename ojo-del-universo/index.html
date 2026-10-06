@@ -140,7 +140,7 @@ body{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth}
   letter-spacing:.28em;
   margin-top:12px;
   color:#746d82;
-  margin-bottom:24px;
+  margin-bottom:34px;
   text-transform:uppercase;
 }
 .intro-line{
@@ -226,7 +226,14 @@ h1{
   .nomai-ring{width:110vw}
   .eye-mark{width:82px;height:82px}
   .quantum-moon{left:90%;top:42%;}
-  .message{line-height:1.7}
+  .speaker-line{
+  margin:0 0 24px;
+  font:11px/1.6 "Courier New",monospace;
+  letter-spacing:.18em;
+  text-align:left;
+  text-shadow:0 0 10px rgba(182,139,212,.28);
+}
+.message{line-height:1.7}
 }
 @media(prefers-reduced-motion:reduce){
   .stone{animation:none;opacity:.18}
@@ -257,7 +264,7 @@ h1{
     <div class="solanum intro-name">SOLANUM</div>
     <h1 class="intro-title">REGISTRO FINAL</h1>
 
-    <div id="messages" class="message"></div>
+    <div id="messages" class="message"><div class="speaker-line keyword">SOLANUM:</div></div>
 
     <div id="final" class="final">
       <div class="rule"></div>
@@ -314,11 +321,6 @@ h1{
     function next(){
       if(line>=lines.length){done&&done();return}
       const p=document.createElement("p");
-      const speaker=document.createElement("span");
-      speaker.className="keyword";
-      speaker.textContent="SOLANUM:";
-      p.appendChild(speaker);
-      p.appendChild(document.createTextNode(" "));
       target.appendChild(p);
       const text=lines[line++];
       let i=0;
