@@ -276,7 +276,7 @@ h1{
         SEÑAL DEL OJO DETECTADA<br>
         <span id="finalRecord"></span><br>
       </div>
-      <div class="thirty">30 CICLOS DE EXPLORACIÓN</div>
+      <div class="thirty" id="thirty"></div>
     </div>
   </section>
 </main>
@@ -331,6 +331,19 @@ h1{
       p.textContent=text.slice(0,i);
       if(i<text.length) setTimeout(type,70);
       else setTimeout(function(){teleprompter(p); done&&done();},220);
+    }
+    type();
+  }
+
+  function typeThirty(done){
+    const el=document.getElementById("thirty");
+    const text="30 CICLOS DE EXPLORACIÓN";
+    let i=0;
+    function type(){
+      i++;
+      el.textContent=text.slice(0,i);
+      if(i<text.length) setTimeout(type,52);
+      else { teleprompter(el); done&&done(); }
     }
     type();
   }
@@ -412,7 +425,7 @@ h1{
           teleprompter(final.querySelector(".last"));
           typeFinalText(function(){});
           setTimeout(function(){
-            teleprompter(final.querySelector(".thirty"));
+            typeThirty(function(){});
           },700);
         },120);
       });
