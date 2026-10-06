@@ -199,7 +199,7 @@ h1{
 #messages{opacity:0;transition:opacity 1.4s ease}
 #messages.ready{opacity:1}
 .keyword{color:#c48be8;letter-spacing:.1em;text-shadow:0 0 7px rgba(168,107,219,.55),0 0 16px rgba(168,107,219,.3)}
-.speaker-line{font-size:18px;letter-spacing:.18em;font-weight:600;color:#d29aff;text-shadow:0 0 5px #d29aff,0 0 12px rgba(168,107,219,.95),0 0 28px rgba(168,107,219,.75),0 0 45px rgba(168,107,219,.42)}
+.speaker-line{font-size:18px;letter-spacing:.18em;font-weight:700;color:#d29aff;text-shadow:0 0 5px #d29aff,0 0 12px rgba(168,107,219,.95),0 0 28px rgba(168,107,219,.75),0 0 45px rgba(168,107,219,.42)}
 .rule{width:100px;height:1px;background:linear-gradient(90deg,transparent,rgba(155,143,199,.45),transparent);margin:30px auto}
 .final{
   margin-top:20px;
@@ -232,10 +232,11 @@ h1{
   .quantum-moon{left:90%;top:42%;}
   .speaker-line{
   margin:0 0 24px;
-  font:11px/1.6 "Courier New",monospace;
+  font:700 18px/1.6 "Courier New",monospace;
   letter-spacing:.18em;
   text-align:left;
-  text-shadow:0 0 10px rgba(182,139,212,.28);
+  color:#d29aff;
+  text-shadow:0 0 5px #d29aff,0 0 12px rgba(168,107,219,.95),0 0 28px rgba(168,107,219,.75),0 0 45px rgba(168,107,219,.42);
 }
 .message{line-height:1.7}
 }
@@ -265,7 +266,7 @@ h1{
   </span>
   <span class="eye intro-line">SEÑAL DEL OJO ···</span>
 </div>
-    <div id="messages" class="message"><div class="speaker-line keyword">SOLANUM:</div></div>
+    <div id="messages" class="message"><div class="speaker-line keyword"><strong>SOLANUM:</strong></div></div>
 
     <div id="final" class="final">
       <div class="rule"></div>
@@ -287,10 +288,8 @@ h1{
 (function(){
   const first=[
     "«Y quizá eso sea lo extraño de las señales.»",
-    "«Nunca sabemos cuánto tiempo van a permanecer con nosotros.»",
-    "«Algunas vienen de muy lejos.»",
-    "«Algunas pertenecen a quienes ya no están.»",
-    "«Otras todavía no han llegado.»",
+    "«Nunca sabemos cuánto tiempo permanecerán con nosotros.»",
+    "«Algunas vienen de muy lejos; otras, de quienes ya no están; otras todavía no han llegado.»",
     "«Pero mientras podamos escucharlas, nunca estarán completamente perdidas.»",
     "SEÑAL ESTABLECIDA.",
     "CONEXIÓN CON EL OJO: DETECTADA."
@@ -305,7 +304,7 @@ h1{
   const box=document.getElementById("messages");
   const final=document.getElementById("final");
   const lastBox=document.getElementById("lastMessages");
-  const speed=42;
+  const speed=48;
   const pause=850;
 
   function teleprompter(el){
@@ -333,8 +332,9 @@ h1{
       const text=lines[line++];
       let i=0;
       function type(){
-        p.textContent=text.slice(0,i++);
-        if(i<=text.length) setTimeout(type,speed);
+        i++;
+        p.textContent=text.slice(0,i);
+        if(i<text.length) setTimeout(type,speed);
         else {
           teleprompter(p);
           setTimeout(next,pause);
@@ -348,10 +348,15 @@ h1{
   setTimeout(function(){
     box.classList.add("ready");
     typeLines(first,box,function(){
-      setTimeout(function(){
-        revealAndScroll(final);
-        typeLines(last,lastBox,function(){});
-      },7800);
+      revealAndScroll(final);
+      typeLines(last,lastBox,function(){
+        setTimeout(function(){
+          teleprompter(final.querySelector(".last"));
+          setTimeout(function(){
+            teleprompter(final.querySelector(".thirty"));
+          },700);
+        },120);
+      });
     });
   },9800);
 })();
