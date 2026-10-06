@@ -276,7 +276,7 @@ h1{
         SEÑAL DEL OJO DETECTADA<br>
         <span class="unknown">[JORGE ÚBEDA ROMERO] — 30</span><br>
         NO HAY MÁS SEÑALES DETECTADAS.<br><br>
-        «O quizá todavía no sabemos descifrarlas.»<br>
+        <span id="unknownLine"></span><br>
         <span class="unknown">IDIOMA DESCONOCIDO</span>
       </div>
       <div class="thirty">30 CICLOS DE EXPLORACIÓN</div>
@@ -338,6 +338,19 @@ h1{
     type();
   }
 
+  function typeUnknownLine(done){
+    const el=document.getElementById("unknownLine");
+    const text="«O quizá todavía no sabemos descifrarlas.»";
+    let i=0;
+    function type(){
+      i++;
+      el.textContent=text.slice(0,i);
+      if(i<text.length) setTimeout(type,52);
+      else done&&done();
+    }
+    type();
+  }
+
   function typeLines(lines,target,done){
     let line=0;
     function next(){
@@ -369,6 +382,7 @@ h1{
       typeLines(last,lastBox,function(){
         setTimeout(function(){
           teleprompter(final.querySelector(".last"));
+          typeUnknownLine(function(){});
           setTimeout(function(){
             teleprompter(final.querySelector(".thirty"));
           },700);
