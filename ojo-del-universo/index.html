@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ojo del Universo — 30 Ciclos de Exploración</title>
+<style>
+:root{
+  --bg:#020207;
+  --text:#d9d5e8;
+  --muted:#77738a;
+  --nomai:#9b8fc7;
+  --quantum:#a86bdb;
+  --quantum-soft:#6f4b91;
+  --white:#f1eef8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif}
+body{overflow-x:hidden}
+#universe{
+  min-height:100vh;
+  min-height:100svh;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:34px 20px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(78,47,101,.12),transparent 30%),
+    radial-gradient(circle at 50% 50%,rgba(18,16,29,.5),transparent 62%),
+    #020207;
+}
+.noise{position:absolute;inset:0;opacity:.18;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.35) .45px,transparent .45px);background-size:5px 5px;mix-blend-mode:screen}
+.nomai-ring{position:absolute;width:min(72vw,620px);aspect-ratio:1;border:1px solid rgba(155,143,199,.13);border-radius:50%;opacity:.8}
+.nomai-ring:before,.nomai-ring:after{content:"";position:absolute;inset:12%;border:1px solid rgba(155,143,199,.09);border-radius:50%;transform:rotate(31deg)}
+.nomai-ring:after{inset:26%;border-radius:48% 52% 47% 53%;transform:rotate(-22deg)}
+.eye-mark{position:absolute;width:112px;height:112px;border:1px solid rgba(168,107,219,.15);border-radius:50%;display:grid;place-items:center;opacity:.5}
+.eye-mark:before{content:"";width:42px;height:42px;border:1px solid rgba(168,107,219,.27);border-radius:50%}
+.eye-mark:after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:rgba(168,107,219,.42);box-shadow:0 0 24px rgba(168,107,219,.5)}
+.stones{position:absolute;inset:0;pointer-events:none}
+.stone{position:absolute;width:9px;height:15px;border-radius:45% 55% 48% 52%;background:linear-gradient(145deg,#c49be7,#70438e);box-shadow:0 0 15px rgba(168,107,219,.38);opacity:0;animation:quantum 7s infinite ease-in-out}
+.s1{left:14%;top:23%;animation-delay:0s}.s2{left:82%;top:29%;animation-delay:2.1s}.s3{left:24%;top:72%;animation-delay:4s}.s4{left:75%;top:76%;animation-delay:1.3s}.s5{left:61%;top:16%;animation-delay:5s}.s6{left:39%;top:83%;animation-delay:3.1s}.s7{left:91%;top:56%;animation-delay:4.8s}.s8{left:8%;top:51%;animation-delay:1s}
+@keyframes quantum{
+  0%,12%,100%{opacity:0;transform:translate(0,0) rotate(0) scale(.7)}
+  25%,45%{opacity:.72}
+  55%{opacity:.05;transform:translate(18px,-12px) rotate(70deg) scale(1.2)}
+  70%{opacity:.65;transform:translate(-11px,9px) rotate(-45deg) scale(.85)}
+  82%{opacity:0}
+}
+.panel{
+  width:min(720px,100%);
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:20px 4px;
+}
+.signal{
+  font:11px/1.6 "Courier New",monospace;
+  letter-spacing:.28em;
+  color:#746d82;
+  margin-bottom:24px;
+  text-transform:uppercase;
+}
+.signal span{display:block}
+.signal .eye{color:#b18bd0}
+.solanum{
+  font:11px/1.6 "Courier New",monospace;
+  letter-spacing:.35em;
+  color:var(--nomai);
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+h1{
+  margin:0 0 34px;
+  font-size:clamp(25px,6vw,43px);
+  font-weight:400;
+  letter-spacing:.16em;
+  color:#e5e0ee;
+  text-shadow:0 0 22px rgba(155,143,199,.14);
+}
+.message{
+  min-height:2.2em;
+  margin:0 auto;
+  max-width:640px;
+  font-size:clamp(17px,3.8vw,22px);
+  line-height:1.8;
+  color:#c7c1d3;
+}
+.message p{margin:0 0 20px}
+.keyword{color:#b68bd4;letter-spacing:.08em}
+.rule{width:100px;height:1px;background:linear-gradient(90deg,transparent,rgba(155,143,199,.45),transparent);margin:30px auto}
+.final{
+  margin-top:20px;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity 1.5s ease,transform 1.5s ease;
+}
+.final.show{opacity:1;transform:none}
+.last{
+  margin-top:28px;
+  font-family:"Courier New",monospace;
+  font-size:clamp(12px,2.6vw,15px);
+  letter-spacing:.18em;
+  line-height:2;
+  color:#8e889b;
+}
+.unknown{color:#b6a9c9}
+.thirty{
+  margin-top:42px;
+  font:10px/1.8 "Courier New",monospace;
+  letter-spacing:.34em;
+  color:#5e5969;
+  text-transform:uppercase;
+}
+#start{display:none}
+@media(max-width:600px){
+  #universe{padding:24px 18px}
+  .nomai-ring{width:110vw}
+  .eye-mark{width:82px;height:82px}
+  .message{line-height:1.7}
+}
+@media(prefers-reduced-motion:reduce){
+  .stone{animation:none;opacity:.18}
+  .final{transition:none}
+}
+</style>
+</head>
+<body>
+<main id="universe">
+  <div class="noise"></div>
+  <div class="nomai-ring"></div>
+  <div class="eye-mark" aria-hidden="true"></div>
+  <div class="stones" aria-hidden="true">
+    <i class="stone s1"></i><i class="stone s2"></i><i class="stone s3"></i><i class="stone s4"></i>
+    <i class="stone s5"></i><i class="stone s6"></i><i class="stone s7"></i><i class="stone s8"></i>
+  </div>
+
+  <section class="panel" aria-live="polite">
+    <div class="signal"><span>QUANTUM LOCATION DETECTED</span><span class="eye">EYE SIGNAL ···</span></div>
+    <div class="solanum">SOLANUM</div>
+    <h1>REGISTRO FINAL</h1>
+
+    <div id="messages" class="message"></div>
+
+    <div id="final" class="final">
+      <div class="rule"></div>
+      <div class="signal"><span class="eye">ÚLTIMO REGISTRO</span></div>
+      <div id="lastMessages" class="message"></div>
+      <div class="last">
+        EYE SIGNAL DETECTED<br>
+        <span class="unknown">[JORGE ÚBEDA ROMERO] — 30</span><br>
+        NO HAY MÁS SEÑALES DETECTADAS.<br><br>
+        «O quizá todavía no sabemos descifrarlas.»<br>
+        <span class="unknown">UNKNOWN LANGUAGE</span>
+      </div>
+      <div class="thirty">30 CICLOS DE EXPLORACIÓN</div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const first=[
+    "«Hemos observado este universo durante mucho tiempo.»",
+    "«Hemos aprendido que ninguna señal existe por sí sola.»",
+    "«Aislados, ninguno explica al explorador.»",
+    "«Juntos, forman su universo.»"
+  ];
+  const last=[
+    "«Quizá un universo no sea más que la suma de todas sus señales.»",
+    "«Has llegado hasta aquí siguiendo las huellas de otros y creando nuevas.»",
+    "«La señal continúa.»",
+    "«Pero su destino todavía no ha sido determinado.»",
+    "«Felices 30.»"
+  ];
+  const box=document.getElementById("messages");
+  const final=document.getElementById("final");
+  const lastBox=document.getElementById("lastMessages");
+  const speed=42;
+  const pause=850;
+
+  function typeLines(lines,target,done){
+    let line=0;
+    function next(){
+      if(line>=lines.length){done&&done();return}
+      const p=document.createElement("p");
+      target.appendChild(p);
+      const text=lines[line++];
+      let i=0;
+      function type(){
+        p.textContent=text.slice(0,i++);
+        if(i<=text.length) setTimeout(type,speed);
+        else setTimeout(next,pause);
+      }
+      type();
+    }
+    next();
+  }
+
+  setTimeout(function(){
+    typeLines(first,box,function(){
+      setTimeout(function(){
+        final.classList.add("show");
+        typeLines(last,lastBox,null);
+      },1200);
+    });
+  },1200);
+})();
+</script>
+</body>
+</html>
