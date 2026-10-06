@@ -266,7 +266,7 @@ h1{
   </span>
   <span class="eye intro-line">SEÑAL DEL OJO ···</span>
 </div>
-    <div id="messages" class="message"><div class="speaker-line keyword"><strong>SOLANUM:</strong></div></div>
+    <div id="messages" class="message"></div>
 
     <div id="final" class="final">
       <div class="rule"></div>
@@ -304,8 +304,8 @@ h1{
   const box=document.getElementById("messages");
   const final=document.getElementById("final");
   const lastBox=document.getElementById("lastMessages");
-  const speed=48;
-  const pause=850;
+  const speed=52;
+  const pause=900;
 
   function teleprompter(el){
     const target=el.getBoundingClientRect();
@@ -323,6 +323,21 @@ h1{
     });
   }
 
+  function typeSpeaker(target,done){
+    const p=document.createElement("div");
+    p.className="speaker-line keyword";
+    target.appendChild(p);
+    const text="SOLANUM:";
+    let i=0;
+    function type(){
+      i++;
+      p.textContent=text.slice(0,i);
+      if(i<text.length) setTimeout(type,70);
+      else setTimeout(function(){teleprompter(p); done&&done();},220);
+    }
+    type();
+  }
+
   function typeLines(lines,target,done){
     let line=0;
     function next(){
@@ -330,6 +345,7 @@ h1{
       const p=document.createElement("p");
       target.appendChild(p);
       const text=lines[line++];
+      if(line>4) p.classList.add("keyword");
       let i=0;
       function type(){
         i++;
@@ -347,7 +363,8 @@ h1{
 
   setTimeout(function(){
     box.classList.add("ready");
-    typeLines(first,box,function(){
+    typeSpeaker(box,function(){
+      typeLines(first,box,function(){
       revealAndScroll(final);
       typeLines(last,lastBox,function(){
         setTimeout(function(){
