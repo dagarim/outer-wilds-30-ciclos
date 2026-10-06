@@ -110,6 +110,34 @@ body{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth}
   text-align:center;
   padding:20px 4px;
 }
+.quantum-symbol{
+  display:inline-block;
+  width:15px;
+  height:19px;
+  margin:0 10px 0 2px;
+  vertical-align:-5px;
+  position:relative;
+  border:1px solid rgba(168,107,219,.58);
+  border-radius:42% 58% 48% 52%;
+  transform:rotate(18deg);
+  box-shadow:0 0 8px rgba(168,107,219,.24);
+  opacity:.78;
+  animation:quantumSymbol 5s ease-in-out infinite;
+}
+.quantum-symbol:before{
+  content:"";
+  position:absolute;
+  width:5px;
+  height:7px;
+  left:4px;
+  top:5px;
+  border:1px solid rgba(168,107,219,.35);
+  border-radius:50%;
+}
+@keyframes quantumSymbol{
+  0%,100%{opacity:.5;box-shadow:0 0 6px rgba(168,107,219,.16)}
+  50%{opacity:.9;box-shadow:0 0 12px rgba(168,107,219,.34)}
+}
 .signal{
   font:11px/1.6 "Courier New",monospace;
   letter-spacing:.28em;
@@ -220,7 +248,7 @@ h1{
   <section class="panel" aria-live="polite">
     <div class="signal">
   <span class="intro-line">
-    <span class="intro-word">QUANTUM</span>
+    <span class="quantum-symbol" aria-hidden="true"></span><span class="intro-word">QUANTUM</span>
     <span class="intro-word">LOCATION</span>
     <span class="intro-word">DETECTED</span>
   </span>
