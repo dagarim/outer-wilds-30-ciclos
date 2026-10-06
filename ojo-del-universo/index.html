@@ -274,10 +274,7 @@ h1{
       <div id="lastMessages" class="message"></div>
       <div class="last">
         SEÑAL DEL OJO DETECTADA<br>
-        <span class="unknown">[JORGE ÚBEDA ROMERO] — 30</span><br>
-        NO HAY MÁS SEÑALES DETECTADAS.<br><br>
-        <span id="unknownLine"></span><br>
-        <span class="unknown">IDIOMA DESCONOCIDO</span>
+        <span id="finalRecord"></span><br>
       </div>
       <div class="thirty">30 CICLOS DE EXPLORACIÓN</div>
     </div>
@@ -338,6 +335,37 @@ h1{
     type();
   }
 
+  function typeFinalText(done){
+    const el=document.getElementById("finalRecord");
+    const parts=[
+      "[JORGE ÚBEDA ROMERO] — 30",
+      "NO HAY MÁS SEÑALES DETECTADAS.",
+      "«O quizá todavía no sabemos descifrarlas.»",
+      "IDIOMA DESCONOCIDO"
+    ];
+    let line=0;
+    function next(){
+      if(line>=parts.length){done&&done();return}
+      if(line===2){
+        el.insertAdjacentHTML("beforeend","<br>");
+      } else if(line>0){
+        el.insertAdjacentHTML("beforeend","<br>");
+      }
+      const span=document.createElement("span");
+      if(line===0||line===3) span.className="unknown";
+      el.appendChild(span);
+      const text=parts[line++];
+      let i=0;
+      function type(){
+        i++;
+        span.textContent=text.slice(0,i);
+        if(i<text.length) setTimeout(type,52); else setTimeout(next,350);
+      }
+      type();
+    }
+    next();
+  }
+
   function typeUnknownLine(done){
     const el=document.getElementById("unknownLine");
     const text="«O quizá todavía no sabemos descifrarlas.»";
@@ -382,7 +410,7 @@ h1{
       typeLines(last,lastBox,function(){
         setTimeout(function(){
           teleprompter(final.querySelector(".last"));
-          typeUnknownLine(function(){});
+          typeFinalText(function(){});
           setTimeout(function(){
             teleprompter(final.querySelector(".thirty"));
           },700);
