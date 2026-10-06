@@ -317,6 +317,13 @@ h1{
     }
   }
 
+  function revealAndScroll(el){
+    el.classList.add("show");
+    requestAnimationFrame(function(){
+      setTimeout(function(){teleprompter(el);},80);
+    });
+  }
+
   function typeLines(lines,target,done){
     let line=0;
     function next(){
@@ -342,8 +349,8 @@ h1{
     box.classList.add("ready");
     typeLines(first,box,function(){
       setTimeout(function(){
-        final.classList.add("show");
-        typeLines(last,lastBox,null);
+        revealAndScroll(final);
+        typeLines(last,lastBox,function(){});
       },7800);
     });
   },9800);
